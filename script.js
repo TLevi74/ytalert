@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBkU9Whyc4w4bBlmMnLawxGgv0Qb-EPlRo",
@@ -22,11 +22,10 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
 
             const username = document.getElementById("username").value;
-            const displayName = document.getElementById("username").value;
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            createUserWithEmailAndPassword(auth, email, password, displayName)
+            createUserWithEmailAndPassword(auth, email, password)
                 .then((userCredential) => {
                     const user = userCredential.user;
                     localStorage.setItem("user", JSON.stringify({
@@ -55,25 +54,32 @@ document.addEventListener("DOMContentLoaded", () => {
     //login form
     const login = document.getElementById("login");
     if (login) {
-        login.addEventListener("click", function (event) {
+        login.addEventListener("click", async function (event) {
             event.preventDefault();
 
             const email = document.getElementById("email").value;
             const password = document.getElementById("password").value;
 
-            signInWithEmailAndPassword(auth, email, password)
-                .then((userCredential) => {
-                    const user = userCredential.user;
-                    localStorage.setItem("user", JSON.stringify({
-                        email: user.email,
-                        uid: user.uid,
-                        displayName: user.displayName || "User"
-                    }));
-                    window.location.href = "profile.html";
-                })
-                .catch((error) => {
-                    alert("Error: " + error.message);
-                });
+            try {
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                // Fetch displayName from Firestore
+                const userDoc = await getDoc(doc(db, "users", user.uid));
+                let displayName = "User";
+                if (userDoc.exists()) {
+                    displayName = userDoc.data().displayName || "User";
+                }
+
+                localStorage.setItem("user", JSON.stringify({
+                    email: user.email,
+                    uid: user.uid,
+                    displayName: displayName
+                }));
+                window.location.href = "profile.html";
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
         });
     }
     //logout
