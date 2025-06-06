@@ -16,9 +16,9 @@ const db = getFirestore(app);
 
 document.addEventListener("DOMContentLoaded", () => {
     //signup form
-    const submit = document.getElementById("submit");
-    if (submit) {
-        submit.addEventListener("click", function (event) {
+    const signup = document.getElementById("signup");
+    if (signup) {
+        signup.addEventListener("click", function (event) {
             event.preventDefault();
 
             const username = document.getElementById("username").value;

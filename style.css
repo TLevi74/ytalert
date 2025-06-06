@@ -1,0 +1,122 @@
+body {
+    background: rgb(46,46,46);
+    background: linear-gradient(90deg, rgba(46,46,46,1) 0%, rgba(18,18,18,1) 100%);
+    display: absolute;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 100vw;
+    height: 100vh;
+    margin: 10;
+    font-family: circular-black;
+    color: white;
+    font-size: 20px;
+    user-select: none;
+}
+
+@font-face {
+    font-family: 'Circular-Black';
+    src: url(circular-black.ttf);
+}
+
+h1 {
+    font-size: 5em;
+    margin: 10;
+    text-shadow: 1px 1px 0px #b3b3b3,
+               1px 2px 0px #b3b3b3,
+               1px 3px 0px #b3b3b3,
+               1px 4px 0px #b3b3b3,
+               1px 5px 0px #b3b3b3,
+               1px 6px 0px #b3b3b3,
+               1px 10px 5px rgba(16, 16, 16, 0.5),
+               1px 15px 10px rgba(16, 16, 16, 0.4),
+               1px 20px 30px rgba(16, 16, 16, 0.3),
+               1px 25px 50px rgba(16, 16, 16, 0.2);
+    margin-left: auto;
+    margin-right: auto;
+}
+h2{
+    font-size: 2em;
+    text-shadow:
+               1px 10px 5px rgba(16, 16, 16, 0.5),
+               1px 15px 10px rgba(16, 16, 16, 0.4),
+               1px 20px 30px rgba(16, 16, 16, 0.3),
+               1px 25px 50px rgba(16, 16, 16, 0.2);
+}
+
+input{
+    box-shadow:  #535353 0 0 0 3px;
+    border: 0;
+    background: #b3b3b3;
+    position: relative;
+    border-radius: 10px;
+    padding: 10px 10px;
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    transition: all .2s ease;
+    font-family: circular-black;
+    margin: 10px;
+}
+input:hover{
+    background-color: #d1d1d1;
+    box-shadow: #1db954 0 0 0 3px;
+}
+input:focus{
+    background: #e8e8e8;
+    outline: 0;
+    box-shadow: #1db954 0 0 0 4px;
+}
+
+button{
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 500px;
+    transition-duration: .3s;
+    border: 1px solid transparent;
+    font-weight: 700;
+    text-align: center;
+    padding: 0 20px;
+    color: #fff;
+    background-color: #1db954;
+    height: 48px;
+    font-family: circular-black;
+    margin: 10px;
+}
+button:not(.disabled):active{
+    transform: scale(0.9) !important;
+}
+button:not(.disabled):hover{
+    transform: scale(1.04);
+    background-color: #21e065;
+}
+button:disabled{
+    background-color: #212121;
+}
+a{
+    color: #b3b3b3;
+    text-decoration: none;
+}
+a:hover{
+    color: #1db954;
+}
+section{
+    display: absolute;
+    align-items: left;
+    text-align: left;
+    margin: 10px;
+    padding: 10px;
+}
+
+li{
+    list-style-type: square;
+    margin: 10px;
+    padding: 2px;
+}
+ul{
+    margin: 10px;
+    padding: 5px;
+}
+strong{
+    color: #1db954;
+}
